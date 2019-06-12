@@ -67,7 +67,7 @@ class LoggerFactory
         foreach ($options->getHandlers() as $handlerConfig) {
 
             if (!is_array($handlerConfig)) {
-                $handlerConfig = ['class' => $handlerConfig];
+                $handlerConfig = ['name' => $handlerConfig];
             }
 
             $logger->pushHandler($this->createHandler($handlerConfig));
@@ -76,11 +76,11 @@ class LoggerFactory
         foreach ($options->getProcessors() as $processorConfig) {
 
             if (!is_array($processorConfig)) {
-                $processorConfig = ['class' => $processorConfig];
+                $processorConfig = ['name' => $processorConfig];
             }
 
             $logger->pushProcessor(
-                $this->processorPluginManager->get($processorConfig['class'], $processorConfig['options'] ?? [])
+                $this->processorPluginManager->get($processorConfig['name'], $processorConfig['options'] ?? [])
             );
 
         }
@@ -99,16 +99,16 @@ class LoggerFactory
     private function createHandler(array $handlerConfig): HandlerInterface
     {
 
-        $handler = $this->handlerPluginManager->get($handlerConfig['class'], $handlerConfig['options'] ?? []);
+        $handler = $this->handlerPluginManager->get($handlerConfig['name'], $handlerConfig['options'] ?? []);
 
         if (isset($handlerConfig['formatter'])) {
 
             $formatterConfig = is_array($handlerConfig['formatter'])
                 ? $handlerConfig['formatter']
-                : ['class' => $handlerConfig['formatter']];
+                : ['name' => $handlerConfig['formatter']];
 
             $formatter = $this->formatterPluginManager->get(
-                $formatterConfig['class'],
+                $formatterConfig['name'],
                 $formatterConfig['options'] ?? []
             );
 
