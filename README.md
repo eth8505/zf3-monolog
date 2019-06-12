@@ -3,7 +3,7 @@ The **Eth8505\Monolog** module integrates [monolog/monolog](https://github.com/s
 via [zendframework/zend-servicemanager](https://github.com/zendframework/zend-servicemanager).
 ## How to install
 
-Please note that this package requires at least php 7.1.
+:warning: Please note that this package requires at least php 7.1.  
 Install `eth8505/zf3-monolog` package via composer.
 
 ~~~bash
@@ -192,8 +192,7 @@ return [
     ]
 ];
 ~~~
-
-Note that only formatters using custom factories need to be ecplicitly registered. Any other handler
+:warning: Note that only formatters using custom factories need to be ecplicitly registered. Any other handler
 configured will be automatically created using the internal, reflection-based factories.
 
 ## Thanks
