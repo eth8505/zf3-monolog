@@ -2,6 +2,12 @@
 The **Eth8505\Monolog** module integrates [monolog/monolog](https://github.com/seldaek/monolog) as a zf3-module 
 via [zendframework/zend-servicemanager](https://github.com/zendframework/zend-servicemanager).
 
+[![Build Status](https://travis-ci.org/eth8505/zf3-monolog.svg?branch=master)](https://travis-ci.org/eth8505/zf3-monolog)
+![Packagist](https://img.shields.io/packagist/dt/eth8505/zf3-monolog.svg)
+![Packagist Version](https://img.shields.io/packagist/v/eth8505/zf3-monolog.svg)
+
+https://img.shields.io/packagist/v/eth8505/zf3-monolog.svg
+
 ## How to install
 
 :warning: Please note that this package requires at least php 7.1.  
