@@ -1,0 +1,18 @@
+{
+    "name": "eth8505/zf3-monolog",
+    "description": "Zend Framework 3 monolog integration",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jan-Simon Winkelmann",
+            "email": "winkelmann@blue-metallic.de"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "monolog/monolog": "^1.11",
+        "zendframework/zend-servicemanager": "^3.0",
+        "zendframework/zend-stdlib": "^3.2"
+    }
+}
