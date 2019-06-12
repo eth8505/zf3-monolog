@@ -10,14 +10,8 @@ env:
     - PREFER_LOWEST="--prefer-lowest"
     - PREFER_LOWEST=""
 
-cache:
-  directories:
-    - $HOME/.composer/cache
-
 before_script:
-  - travis_retry composer self-update
-  - travis_retry composer update --no-interaction --prefer-source --no-suggest --classmap-authoritative $PREFER_LOWEST
-  - composer info -i
+  - composer update --prefer-source $PREFER_LOWEST
 
 script:
   - vendor/bin/phpunit -c phpunit.xml.dist

@@ -5,7 +5,7 @@ namespace Eth8505Test\Monolog\Processor;
 use Eth8505\Monolog\Processor\ProcessorPluginManager;
 use Monolog\Processor\ProcessorInterface;
 use PHPUnit\Framework\TestCase;
-use Psr\Container\ContainerInterface;
+use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 
 class ProcessorPluginManagerTest extends TestCase

@@ -5,7 +5,7 @@ namespace Eth8505Test\Monolog\Handler;
 use Eth8505\Monolog\Handler\HandlerPluginManager;
 use Monolog\Handler\HandlerInterface;
 use PHPUnit\Framework\TestCase;
-use Psr\Container\ContainerInterface;
+use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 
 class HandlerPluginManagerTest extends TestCase

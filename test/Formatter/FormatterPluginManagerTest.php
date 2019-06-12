@@ -3,9 +3,9 @@
 namespace Eth8505Test\Monolog\Formatter;
 
 use Eth8505\Monolog\Formatter\FormatterPluginManager;
+use Interop\Container\ContainerInterface;
 use Monolog\Formatter\FormatterInterface;
 use PHPUnit\Framework\TestCase;
-use Psr\Container\ContainerInterface;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 
 class FormatterPluginManagerTest extends TestCase
