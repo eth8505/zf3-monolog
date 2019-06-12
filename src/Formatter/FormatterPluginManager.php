@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Eth8505\Monolog\Handler;
+namespace Eth8505\Monolog\Formatter;
 
 use Monolog\Formatter\FormatterInterface;
 use Zend\ServiceManager\AbstractPluginManager;

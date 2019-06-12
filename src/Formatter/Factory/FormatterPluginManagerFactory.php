@@ -2,7 +2,7 @@
 
 namespace Eth8505\Monolog\Formatter\Factory;
 
-use Eth8505\Monolog\Handler\FormatterPluginManager;
+use Eth8505\Monolog\Formatter\FormatterPluginManager;
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 

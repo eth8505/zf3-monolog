@@ -2,7 +2,7 @@
 
 namespace Eth8505\Monolog\Factory;
 
-use Eth8505\Monolog\Handler\FormatterPluginManager;
+use Eth8505\Monolog\Formatter\FormatterPluginManager;
 use Eth8505\Monolog\Handler\HandlerPluginManager;
 use Eth8505\Monolog\MonologOptions;
 use Eth8505\Monolog\Processor\ProcessorPluginManager;

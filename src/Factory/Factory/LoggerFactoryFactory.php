@@ -3,7 +3,7 @@
 namespace Eth8505\Monolog\Factory\Factory;
 
 use Eth8505\Monolog\Factory\LoggerFactory;
-use Eth8505\Monolog\Handler\FormatterPluginManager;
+use Eth8505\Monolog\Formatter\FormatterPluginManager;
 use Eth8505\Monolog\Handler\HandlerPluginManager;
 use Eth8505\Monolog\Processor\ProcessorPluginManager;
 use Interop\Container\ContainerInterface;

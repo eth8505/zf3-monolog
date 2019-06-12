@@ -17,7 +17,7 @@ class LoggerAbstractFactory implements AbstractFactoryInterface
      */
     public function canCreate(ContainerInterface $container, $requestedName)
     {
-        return !empty($this->getLoggerConfig($container->get('Config')['monolog'], $requestedName));
+        return $this->getLoggerConfig($container->get('Config')['monolog'], $requestedName) !== null;
     }
 
     /**
@@ -25,19 +25,19 @@ class LoggerAbstractFactory implements AbstractFactoryInterface
      *
      * @param array $config
      * @param string $requestedName
-     * @return MonologOptions
+     * @return MonologOptions|null
      */
-    private function getLoggerConfig(array $config, string $requestedName): MonologOptions
+    private function getLoggerConfig(array $config, string $requestedName): ?MonologOptions
     {
 
         if (!isset($config['loggers']) || !is_array($config['loggers'])) {
-            throw new RuntimeException('Logger config not found');
+            return null;
         }
 
         $loggers = $config['loggers'];
 
         if (!isset($loggers[$requestedName]) || !is_array($loggers[$requestedName])) {
-            throw new RuntimeException("Config for logger name \"{$requestedName}\" not found");
+            return null;
         }
 
         return new MonologOptions($loggers[$requestedName]);
@@ -51,10 +51,13 @@ class LoggerAbstractFactory implements AbstractFactoryInterface
     {
 
         $loggerFactory = $container->get(LoggerFactory::class);
+        $loggerConfig = $this->getLoggerConfig($container->get('Config')['monolog'], $requestedName);
 
-        return $loggerFactory(
-            $this->getLoggerConfig($container->get('Config')['monolog'], $requestedName)
-        );
+        if ($loggerConfig === null) {
+            throw new RuntimeException("Logger config for \"{$requestedName}\" not found");
+        }
+
+        return $loggerFactory($loggerConfig);
 
     }
 
