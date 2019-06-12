@@ -17,7 +17,7 @@ Load the module in your `application.config.php` file like so:
 
 return [
 	'modules' => [
-		'Eth8585\\Monolog',
+		'Eth8505\\Monolog',
 		// ...
 	],
 ];
