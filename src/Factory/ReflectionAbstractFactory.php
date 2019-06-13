@@ -3,6 +3,7 @@
 namespace Eth8505\Monolog\Factory;
 
 use Eth8505\Monolog\Exception\ClassNotFoundException;
+use Eth8505\Monolog\Exception\InvalidArgumentException;
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\AbstractFactoryInterface;
 
@@ -32,15 +33,45 @@ class ReflectionAbstractFactory implements AbstractFactoryInterface
         }
 
         $reflectionClass = new \ReflectionClass($requestedName);
-        $constructorArgs = $reflectionClass->getMethod('__construct')->getParameters();
+        $constructor = $reflectionClass->getConstructor();
 
-        $args = [];
-
-        foreach ($constructorArgs as $constructorArg) {
-            $args[] = isset($options[$constructorArg->getName()]) ? $constructorArg->getDefaultValue() : null;
+        if ($constructor === null) {
+            return $reflectionClass->newInstance();
         }
 
-        return $reflectionClass->newInstanceArgs($args);
+        $requiredArgsCount = $constructor->getNumberOfRequiredParameters();
+        $argumentCount = $options === null ? 0 : count($options);
+
+        if ($requiredArgsCount > $argumentCount) {
+
+            throw new InvalidArgumentException(sprintf(
+                '%s::__construct() requires at least %d arguments; %d given',
+                $requestedName,
+                $requiredArgsCount,
+                $argumentCount
+            ));
+
+        }
+
+        $parameters = [];
+        foreach ($constructor->getParameters() as $parameter) {
+
+            $parameterName = $parameter->getName();
+
+            if (array_key_exists($parameterName, $options)) {
+                $parameters[$parameter->getPosition()] = $options[$parameterName];
+                continue;
+            }
+
+            if (!$parameter->isOptional()) {
+                throw new InvalidArgumentException("Missing at least one required parameters \"{$parameterName}\"");
+            }
+
+            $parameters[$parameter->getPosition()] = $parameter->getDefaultValue();
+
+        }
+
+        return $reflectionClass->newInstanceArgs($parameters);
 
     }
 
