@@ -5,8 +5,7 @@ via [zendframework/zend-servicemanager](https://github.com/zendframework/zend-se
 [![Build Status](https://travis-ci.org/eth8505/zf3-monolog.svg?branch=master)](https://travis-ci.org/eth8505/zf3-monolog)
 ![Packagist](https://img.shields.io/packagist/dt/eth8505/zf3-monolog.svg)
 ![Packagist Version](https://img.shields.io/packagist/v/eth8505/zf3-monolog.svg)
-
-https://img.shields.io/packagist/v/eth8505/zf3-monolog.svg
+![PHP from Packagist](https://img.shields.io/packagist/php-v/eth8505/zf3-monolog.svg)
 
 ## How to install
 
