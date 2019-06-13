@@ -188,18 +188,24 @@ processors and formatters can be easily registered, by adding them to the respec
 return [
     'monolog' => [
         'formatters' => [
-            MyCustomFormatter::class => MyCustomFormatterFactory::class
+            factories' => [
+                MyCustomFormatter::class => MyCustomFormatterFactory::class
+            ]
         ],
         'handlers' => [
-            MyCustomHandler::class => MyCustomHandlerFactory::class
+            'factories' => [
+                MyCustomHandler::class => MyCustomHandlerFactory::class
+            ]
         ],
         'processors' => [
-            MyCustomProcessor::class => MyCustomProcessorFactory::class
+            'factories' => [
+                MyCustomProcessor::class => MyCustomProcessorFactory::class
+            ]
         ]
     ]
 ];
 ~~~
-:warning: Note that only formatters using custom factories need to be ecplicitly registered. Any other handler
+:warning: Note that only formatters using custom factories need to be explicitly registered. Any other handler
 configured will be automatically created using the internal, reflection-based factories.
 
 ## Thanks
