@@ -207,6 +207,25 @@ return [
 :warning: Note that only formatters using custom factories need to be explicitly registered. Any other handler
 configured will be automatically created using the internal, reflection-based factories.
 
+### Extending log handlers
+You can define default loggers and inherit from them in other loggers.
+~~~php
+return [
+    'monolog' => [
+        'loggers' => [
+            'base' => [
+                // default logger config
+            ],
+            'inherited' => [
+                '@extends' => 'base'
+            ]
+        ]
+    ]
+];
+~~~
+
+See [example config](samples/extend-config.example.config.php) for details.
+
 ## Thanks
 Thanks to [neckeloo](https://github.com/neeckeloo) and his [Monolog Module](https://github.com/neeckeloo/monolog-module)
 and [enlitepro](https://github.com/enlitepro) for their [Enlite Monolog](https://github.com/enlitepro/enlite-monolog)
