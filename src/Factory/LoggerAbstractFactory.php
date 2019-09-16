@@ -2,6 +2,8 @@
 
 namespace Eth8505\Monolog\Factory;
 
+use Eth8505\Monolog\Exception\InvalidArgumentException;
+use Eth8505\Monolog\Exception\OutOfBoundsException;
 use Eth8505\Monolog\Exception\RuntimeException;
 use Eth8505\Monolog\MonologOptions;
 use Interop\Container\ContainerInterface;
@@ -40,7 +42,22 @@ class LoggerAbstractFactory implements AbstractFactoryInterface
             return null;
         }
 
-        return new MonologOptions($loggers[$requestedName]);
+        $loggerConfig = $loggers[$requestedName];
+
+        if (isset($loggerConfig['@extends'])) {
+
+            if (!is_string($loggerConfig['@extends'])) {
+                throw new InvalidArgumentException('@extends must be string');
+            } elseif (!isset($loggers[$loggerConfig['@extends']])) {
+                throw new OutOfBoundsException("Offset {$loggerConfig['@extends']} does not exist");
+            }
+
+            $loggerConfig = array_replace_recursive($loggers[$loggerConfig['@extends']], $loggerConfig);
+            unset($loggerConfig['@extends']);
+
+        }
+
+        return new MonologOptions($loggerConfig);
 
     }
 
