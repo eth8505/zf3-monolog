@@ -27,5 +27,11 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^7.5"
+    },
+    "extra": {
+        "zf": {
+            "component": "Eth8505\\Monolog",
+            "config-provider": "Eth8505\\Monolog\\ConfigProvider"
+        }
     }
 }
