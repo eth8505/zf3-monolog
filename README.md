@@ -223,6 +223,8 @@ return [
     ]
 ];
 ~~~
+:information_source: Even though recursion is supported here as of Version 1.0.3, it is limited to 10 levels and will
+throw a ```Eth8505\Monolog\Exception\RuntimeException``` if recursed any deeper. 
 
 See [example config](samples/extend-config.example.config.php) for details.
 
