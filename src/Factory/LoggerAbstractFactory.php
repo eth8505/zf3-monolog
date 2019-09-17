@@ -14,6 +14,12 @@ use Zend\ServiceManager\Factory\AbstractFactoryInterface;
  */
 class LoggerAbstractFactory implements AbstractFactoryInterface
 {
+
+    /**
+     * @var int
+     */
+    private const INHERITANCE_LEVEL_LIMIT = 10;
+
     /**
      * @inheritDoc
      */
@@ -46,14 +52,24 @@ class LoggerAbstractFactory implements AbstractFactoryInterface
 
         if (isset($loggerConfig['@extends'])) {
 
-            if (!is_string($loggerConfig['@extends'])) {
-                throw new InvalidArgumentException('@extends must be string');
-            } elseif (!isset($loggers[$loggerConfig['@extends']])) {
-                throw new OutOfBoundsException("Offset {$loggerConfig['@extends']} does not exist");
-            }
+            $recursionDepth = 0;
 
-            $loggerConfig = array_replace_recursive($loggers[$loggerConfig['@extends']], $loggerConfig);
-            unset($loggerConfig['@extends']);
+            do {
+
+                if (($recursionDepth + 1) > self::INHERITANCE_LEVEL_LIMIT) {
+                    throw new RuntimeException(sprintf('Maximum inheritance level of %u reached', self::INHERITANCE_LEVEL_LIMIT));
+                } elseif (!is_string($loggerConfig['@extends'])) {
+                    throw new InvalidArgumentException('@extends must be string');
+                } elseif (!isset($loggers[$loggerConfig['@extends']])) {
+                    throw new OutOfBoundsException("Offset {$loggerConfig['@extends']} does not exist");
+                }
+
+                $nextConfig = $loggers[$loggerConfig['@extends']];
+                unset($loggerConfig['@extends']);
+                $loggerConfig = array_replace_recursive($nextConfig, $loggerConfig);
+                $recursionDepth++;
+
+            } while (isset($loggerConfig['@extends']));
 
         }
 
