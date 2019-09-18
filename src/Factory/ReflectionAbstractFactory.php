@@ -58,7 +58,7 @@ class ReflectionAbstractFactory implements AbstractFactoryInterface
 
             $parameterName = $parameter->getName();
 
-            if (array_key_exists($parameterName, $options)) {
+            if ($options !== null && array_key_exists($parameterName, $options)) {
                 $parameters[$parameter->getPosition()] = $options[$parameterName];
                 continue;
             }
