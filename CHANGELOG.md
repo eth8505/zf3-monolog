@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 1.0.4
+
+### Added
+- Nothing.
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#5](https://github.com/eth8505/zf3-monolog/pull/5) fixes a missing options array causing a ```TypeError```.
+
 ## 1.0.3
 
 ### Added
