@@ -73,7 +73,40 @@ class LoggerAbstractFactory implements AbstractFactoryInterface
 
         }
 
-        return new MonologOptions($loggerConfig);
+        return new MonologOptions($this->applyConfigDefaults($loggerConfig, $config));
+
+    }
+
+    private function applyConfigDefaults(array $loggerConfig, array $monologConfig): array
+    {
+
+        if (!isset($monologConfig['defaults'])) {
+            return $loggerConfig;
+        }
+
+        $defaults = $monologConfig['defaults'];
+
+        if (!empty($defaults['processors'])) {
+            $loggerConfig['processors'] = array_merge($loggerConfig['processors'] ?? [], $defaults['processors']);
+        }
+
+        if ((!empty($defaults['level']) || !empty($default['formatter'])) && !empty($loggerConfig['handlers'])) {
+
+            array_walk($loggerConfig['handlers'], function(array &$handler) use ($defaults) {
+
+                if (!empty($defaults['level'])) {
+                    $handler['options']['level'] = $handler['options']['level'] ?? $defaults['level'];
+                }
+
+                if (!empty($defaults['formatter']) && empty($handler['formatter'])) {
+                    $handler['formatter'] = $defaults['formatter'];
+                }
+
+            });
+
+        }
+
+        return $loggerConfig;
 
     }
 
