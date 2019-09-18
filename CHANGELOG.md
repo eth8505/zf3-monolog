@@ -5,7 +5,8 @@ All notable changes to this project will be documented in this file, in reverse 
 ## 1.0.4
 
 ### Added
-- Nothing.
+- [#6](https://github.com/eth8505/zf3-monolog/pull/6) adds support for configuring global defaults applied to all
+loggers.
 
 ### Changed
 
