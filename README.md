@@ -1,3 +1,5 @@
+!! THIS PACKAGE IS NO LONGER MAINTAINTED, use [eth8505/laminas-monolog](https://github.com/eth8505/laminas-monolog) instead !!
+
 # Eth8505\Monolog - ZF3 module integrating monolog with zend framework v3
 The **Eth8505\Monolog** module integrates [monolog/monolog](https://github.com/seldaek/monolog) as a zf3-module 
 via [zendframework/zend-servicemanager](https://github.com/zendframework/zend-servicemanager).
